@@ -9,12 +9,14 @@ using HtmlAgilityPack;
 
 namespace pm_thief
 {
-    static class Downloader
+    public static class Downloader
     {
-        private static async Task<HtmlDocument> GetHtmlDoc(string url)
+        public static async Task<HtmlDocument> GetHtmlDoc(string url)
         {
-            var client = new HttpClient();
-            var data = string.Empty;
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.UserAgent.ParseAdd(
+                "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0");
+            string data = string.Empty;
             try
             {
                 data = await client.GetStringAsync(url);
@@ -24,7 +26,7 @@ namespace pm_thief
                 Debug.WriteLine(ex.Message);
                 Console.WriteLine(ex.Message);
             }
-            var doc = new HtmlDocument();
+            HtmlDocument doc = new HtmlDocument();
             doc.LoadHtml(data);
             return doc;
         }
