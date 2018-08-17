@@ -31,6 +31,7 @@ namespace PmThief
         }
 
 
+        // Маркул бля выучи нотацию (х2) (Назвы методов с Капитальной)
         //Обобщить для разных спортов, пока только для футбола
         public static void getMatchesFromDoc(HtmlDocument doc)
         {
