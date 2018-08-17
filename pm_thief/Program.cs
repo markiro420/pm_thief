@@ -20,6 +20,14 @@ namespace PmThief
             //var node = doc.DocumentNode;
             //Console.WriteLine(node.InnerHtml); 
             var data = Parser.GetSportLinksHierarchy(doc);
+            foreach(var sport in data.Keys)
+            {
+                foreach (var league in data[sport])
+                {
+                    var sport_page = await Downloader.GetHtmlDoc("https://www.parimatch.com" + league.link);
+                    Parser.getMatchesFromDoc(sport_page);
+                }
+            }
         }
     }
 }

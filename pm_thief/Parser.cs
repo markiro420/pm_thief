@@ -30,6 +30,20 @@ namespace PmThief
             return sportHierarchy;
         }
 
+
+        //Обобщить для разных спортов, пока только для футбола
+        public static void getMatchesFromDoc(HtmlDocument doc)
+        {
+            HtmlNode table = doc.DocumentNode.ChildNodes..Where(d => d.Attributes.Contains("class") && d.Attributes["class"].Value.Contains("dt twp")).ToList().FirstOrDefault();
+            if (table != null)
+            {
+                var rawMatches = table.Descendants().Where(d => d.Attributes.Contains("class")
+                    && d.Attributes["class"].Value.Contains("row1 processed")).ToList();
+                    //&& (d.Attributes["class"].Value.Contains("row1") || d.Attributes["class"].Value.Contains("row1"))).ToList();
+                Console.WriteLine();
+            }
+        }
+
         //public static List<>
     }
 }
