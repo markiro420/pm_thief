@@ -10,7 +10,7 @@ namespace PmThief
     public static class Parser
     {
         // Маркул бля выучи нотацию
-        public static Dictionary<string, List<(string, string)>> GetSportLinksHierarchy(HtmlDocument doc)
+        public static Dictionary<string, List<(string league, string link)>> GetSportLinksHierarchy(HtmlDocument doc)
         {
             // Из тейбл нужно собрать все ссылки с названием лиг, скомпоновать в список таплов и поместить в словарь по спортам
             HtmlNode table = doc.DocumentNode.SelectSingleNode("//*[@id=\"lobbySportsHolder\"]");
@@ -21,7 +21,7 @@ namespace PmThief
             {
                 var sport = sportNode.ChildNodes["a"].InnerText;
                 var leagues_links = sportNode.ChildNodes["ul"].ChildNodes.Where(child => child.Name == "li").
-                    Select(li => (league: li.InnerText, link: li.ChildNodes["a"].GetAttributeValue("href", string.Empty)));
+                    Select(li => (li.InnerText, li.ChildNodes["a"].GetAttributeValue("href", string.Empty)));
 
                 if (!sportHierarchy.Keys.Contains(sport))
                     sportHierarchy.Add(sport, new List<(string, string)>());
