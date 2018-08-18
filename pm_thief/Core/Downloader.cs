@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 
-namespace PmThief
+namespace PmThief.Core
 {
     public static class Downloader
     {
