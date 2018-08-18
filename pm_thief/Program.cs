@@ -16,18 +16,14 @@ namespace PmThief
 
         private static async void DownloaderTest()
         {
-            var doc = await Core.Downloader.GetHtmlDoc("https://www.parimatch.com");
+            var html = await Core.Downloader.GetHTML("https://www.parimatch.com");
+            var sportHierarchy = Core.Parser.GetSportHierarchy(html); // пока просто string 
 
-            var html = doc.DocumentNode.OuterHtml;
-            var result = Core.Parser.GetSportHierarchy(html);
-            Console.WriteLine(result);
-
-            //var data = Core.Parser.GetSportLinksHierarchy(doc);
-            //foreach(var sport in data.Keys)
+            //foreach(var sport in sportHierarchy.Keys)
             //{
             //    foreach (var league in data[sport])
             //    {
-            //        var sport_page = await Core.Downloader.GetHtmlDoc("https://www.parimatch.com" + league.link);
+            //        var sport_page = await Core.Downloader.GetHTML("https://www.parimatch.com" + league.link);
             //        Core.Parser.getMatchesFromDoc(sport_page);
             //    }
             //}

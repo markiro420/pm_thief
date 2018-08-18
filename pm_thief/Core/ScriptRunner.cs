@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PmThief.Core
 {
@@ -39,27 +35,6 @@ namespace PmThief.Core
                     string result = reader.ReadToEnd();
                     return result;
                 }
-            }
-        }
-
-        internal static string CreateFile(string data)
-        {
-            var uuid = Guid.NewGuid().ToString();
-            using (StreamWriter writer = new StreamWriter(Path.Combine(base_path, uuid), false, encoding: Encoding.UTF8))
-                writer.Write(data);
-            return uuid;
-        }
-
-        internal static void DeleteFile(string uuid)
-        {
-            File.Delete(Path.Combine(base_path, uuid));
-        }
-
-        internal static string ReadFile(string uuid)
-        {
-            using (StreamReader reader = new StreamReader(Path.Combine(base_path, uuid), encoding: Encoding.UTF8))
-            {
-                return reader.ReadToEnd();
             }
         }
     }

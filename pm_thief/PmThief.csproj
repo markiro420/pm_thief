@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B712FA4D-BC74-4708-BBC6-22FB8D279537}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>pm_thief</RootNamespace>
-    <AssemblyName>pm_thief</AssemblyName>
+    <RootNamespace>PmThief</RootNamespace>
+    <AssemblyName>PmThief</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,9 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.8.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.8.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -50,8 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Downloader.cs" />
+    <Compile Include="Core\FileSupervisor.cs" />
     <Compile Include="Core\Parser.cs" />
     <Compile Include="Core\ScriptRunner.cs" />
+    <Compile Include="Core\SerializationSupervisor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -60,6 +59,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\delivery_manager.py" />
     <Content Include="Scripts\sport_hierarchy.py" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

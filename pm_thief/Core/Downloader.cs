@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using HtmlAgilityPack;
 
 namespace PmThief.Core
 {
     public static class Downloader
     {
-        public static async Task<HtmlDocument> GetHtmlDoc(string url)
+        public static async Task<string> GetHTML(string url)
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.UserAgent.ParseAdd(
@@ -26,10 +22,7 @@ namespace PmThief.Core
                 Debug.WriteLine(ex.Message);
                 Console.WriteLine(ex.Message);
             }
-            HtmlDocument doc = new HtmlDocument();
-            doc.LoadHtml(data);
-            return doc;
+            return data;
         }
-
     }
 }
