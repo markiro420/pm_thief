@@ -1,6 +1,7 @@
 ﻿from bs4 import BeautifulSoup
 import sys
 import delivery_manager
+import json
 
 
 def get_sport_hierarchy(soup: BeautifulSoup):
@@ -23,4 +24,4 @@ in_uuid = sys.argv[1]
 html_text = delivery_manager.read_file(in_uuid)
 soup = delivery_manager.html_to_soup(html_text)
 hrchy = get_sport_hierarchy(soup)
-print(delivery_manager.write_file(hrchy))
+print(delivery_manager.write_file(json.dumps(hrchy)))
