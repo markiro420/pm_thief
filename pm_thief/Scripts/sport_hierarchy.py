@@ -2,6 +2,7 @@
 import sys
 import delivery_manager
 import json
+import time
 
 
 def get_sport_hierarchy(soup: BeautifulSoup):
@@ -20,8 +21,14 @@ def get_sport_hierarchy(soup: BeautifulSoup):
     return hierarchy
 
 
+t0 = time.time()
 in_uuid = sys.argv[1]
 html_text = delivery_manager.read_file(in_uuid)
 soup = delivery_manager.html_to_soup(html_text)
 hrchy = get_sport_hierarchy(soup)
-print(delivery_manager.write_file(json.dumps(hrchy)))
+t1 = time.time()
+# print(t1 - t0)
+dump = json.dumps(hrchy)
+t2 = time.time()
+# print(t2 - t1)
+print(delivery_manager.write_file(dump))
