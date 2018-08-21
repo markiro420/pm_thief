@@ -1,13 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace PmThief.Core
 {
     internal static class SerializationSupervisor
     {
+        public static string Serialize(object obj)
+        {
+            string data = JsonConvert.SerializeObject(obj, Formatting.None);
+            return data;
+        }
 
+        public static T0 Deserialize<T0>(string data)
+        {
+            T0 obj = JsonConvert.DeserializeObject<T0>(data);
+            return obj;
+        }
     }
 }
