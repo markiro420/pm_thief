@@ -22,7 +22,7 @@ namespace CrystalUnit0
             var html = await CrystalGeneric.Downloader.GetHTML("https://www.parimatch.com");
             Console.WriteLine($"Page load time: {sw.ElapsedMilliseconds}ms");
             sw.Restart();
-            var sportHierarchy = Core.Parser.GetSportHierarchy(html);
+            var sportHierarchy = Parser.GetSportHierarchy(html);
             Console.WriteLine($"Total parsing time: {sw.ElapsedMilliseconds}ms");
             sw.Restart();
             string data = CrystalGeneric.SerializationSupervisor.Serialize(sportHierarchy);

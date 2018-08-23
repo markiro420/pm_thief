@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace CrystalUnit0.Core
+namespace CrystalUnit0
 {
+    // https://stackoverflow.com/questions/52797/how-do-i-get-the-path-of-the-assembly-the-code-is-in
     public static class Parser
     {
         static readonly Stopwatch sw = new Stopwatch();
-        static public Dictionary<string, List<(string league, string link)>> GetSportHierarchy(string html) // (string league, string link)
+        public static Dictionary<string, List<(string league, string link)>> GetSportHierarchy(string html)
         {
             sw.Start();
             var out_uuid = CrystalGeneric.FileSupervisor.WriteFile(html);

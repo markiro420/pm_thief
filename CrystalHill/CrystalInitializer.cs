@@ -13,7 +13,9 @@ namespace CrystalHill
         protected override void Seed(CrystalVault context)
         {
             base.Seed(context);
-            //context.Bookies.Add(new Bookie { })
+            // add startup data
         }
+
     }
+
 }

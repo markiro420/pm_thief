@@ -52,9 +52,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configs\LeagueConfig.cs" />
+    <Compile Include="Configs\SportConfig.cs" />
     <Compile Include="CrystalHill.cs" />
     <Compile Include="CrystalInitializer.cs" />
     <Compile Include="CrystalVault.cs" />
+    <Compile Include="Data\League.cs" />
+    <Compile Include="Data\Sport.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,5 +66,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
