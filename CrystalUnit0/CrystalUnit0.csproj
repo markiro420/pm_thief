@@ -62,9 +62,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\data_classes.py" />
     <Content Include="Scripts\delivery_manager.py" />
     <Content Include="Scripts\get_matches.py" />
     <Content Include="Scripts\sport_hierarchy.py" />
+    <Content Include="Scripts\utils.py" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
