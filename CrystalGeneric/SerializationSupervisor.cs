@@ -1,9 +1,9 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace PmThief.Core
+namespace CrystalGeneric
 {
-    internal static class SerializationSupervisor
+    public static class SerializationSupervisor
     {
         public static string Serialize(object obj)
         {

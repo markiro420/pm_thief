@@ -2,18 +2,18 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace PmThief.Core
+namespace CrystalGeneric
 {
-    internal static class ScriptRunner
+    public static class ScriptRunner
     {
         private static readonly string base_path = @"..\..\Scripts\";
 
-        internal static string RunScript(string sc)
+        public static string RunScript(string sc)
         {
             return RunScript(sc, string.Empty);
         }
 
-        internal static string RunScript(string sc, string args)
+        public static string RunScript(string sc, string args)
         {
             string path = Path.Combine(base_path, sc);
             ProcessStartInfo info = new ProcessStartInfo

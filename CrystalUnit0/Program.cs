@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PmThief
+namespace CrystalUnit0
 {
     class Program
     {
@@ -19,13 +19,13 @@ namespace PmThief
         private static async void DownloaderTest()
         {
             sw.Start();
-            var html = await Core.Downloader.GetHTML("https://www.parimatch.com");
+            var html = await CrystalGeneric.Downloader.GetHTML("https://www.parimatch.com");
             Console.WriteLine($"Page load time: {sw.ElapsedMilliseconds}ms");
             sw.Restart();
             var sportHierarchy = Core.Parser.GetSportHierarchy(html);
             Console.WriteLine($"Total parsing time: {sw.ElapsedMilliseconds}ms");
             sw.Restart();
-            string data = Core.SerializationSupervisor.Serialize(sportHierarchy);
+            string data = CrystalGeneric.SerializationSupervisor.Serialize(sportHierarchy);
             Console.WriteLine($"From c# serialization  time: {sw.ElapsedMilliseconds}ms");
 
             //string guid = Core.FileSupervisor.WriteFile(data);

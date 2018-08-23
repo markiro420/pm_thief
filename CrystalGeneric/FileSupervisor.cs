@@ -2,11 +2,11 @@
 using System.IO;
 using System.Text;
 
-namespace PmThief.Core
+namespace CrystalGeneric
 {
-    internal static class FileSupervisor
+    public static class FileSupervisor
     {
-        internal static string WriteFile(string data)
+        public static string WriteFile(string data)
         {
             var uuid = Guid.NewGuid().ToString();
             using (StreamWriter writer = new StreamWriter(uuid, false, encoding: Encoding.UTF8))
@@ -14,12 +14,12 @@ namespace PmThief.Core
             return uuid;
         }
 
-        internal static void DeleteFile(string uuid)
+        public static void DeleteFile(string uuid)
         {
             File.Delete(uuid);
         }
 
-        internal static string ReadFile(string uuid)
+        public static string ReadFile(string uuid)
         {
             using (StreamReader reader = new StreamReader(uuid, encoding: Encoding.UTF8))
             {

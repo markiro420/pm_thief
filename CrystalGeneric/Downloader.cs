@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace PmThief.Core
+namespace CrystalGeneric
 {
     public static class Downloader
     {
