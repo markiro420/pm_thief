@@ -8,7 +8,7 @@ using CrystalGeneric;
 namespace CrystalUnit0
 {
     // https://stackoverflow.com/questions/52797/how-do-i-get-the-path-of-the-assembly-the-code-is-in
-    public static class Parser
+    static class Parser
     {
         static readonly Stopwatch sw = new Stopwatch();
         public static Dictionary<string, List<(string league, string link)>> GetSportHierarchy(string html)

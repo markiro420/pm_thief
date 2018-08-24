@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScriptRunner.cs" />
     <Compile Include="SerializationSupervisor.cs" />
+    <Compile Include="UnitControllerBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

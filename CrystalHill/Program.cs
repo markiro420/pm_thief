@@ -15,9 +15,9 @@ namespace CrystalHill
                 // Model testing code here.
 
                 Console.WriteLine("Starting");
-                var sport = new Data.Sport { Name = "football" };
+                var sport = new Data.Sport { Name = "football", UpdTime = DateTime.UtcNow };
                 var league1 = new Data.League { Sport = sport, LeagueName = "Canada league", Link = "https://google.com", UpdTime = DateTime.Now };
-                var league2 = new Data.League { LeagueName = "Australia league", Link = "https://bing.com", UpdTime = DateTime.Now };
+                var league2 = new Data.League { LeagueName = "Australia league", Link = "https://bing.com", UpdTime = DateTime.UtcNow };
                 sport.Leagues.Add(league2);
 
                 context.Leagues.Add(league1);

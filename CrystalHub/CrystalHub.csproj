@@ -50,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CrystalGeneric\CrystalGeneric.csproj">
+      <Project>{4145c715-3641-4d2a-8dba-5cea89ff1971}</Project>
+      <Name>CrystalGeneric</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CrystalUnit0\CrystalUnit0.csproj">
       <Project>{b712fa4d-bc74-4708-bbc6-22fb8d279537}</Project>
       <Name>CrystalUnit0</Name>
