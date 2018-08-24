@@ -7,12 +7,26 @@ using System.Threading.Tasks;
 
 namespace CrystalUnit0
 {
+    using CrystalHill;
     class Program
     {
         static readonly Stopwatch sw = new Stopwatch();
         static void Main(string[] args)
         {
-            DownloaderTest();
+            using (var context = CrystalHill.TheVault)
+            {
+                foreach (var s in context.Sports)
+                {
+                    Console.WriteLine(s.Name);
+                    foreach (var l in s.Leagues)
+                    {
+                        Console.WriteLine($"\t{l.LeagueName}");
+                    }
+                }
+            }
+
+
+            //DownloaderTest();
             Console.ReadLine();
         }
 
