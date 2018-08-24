@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CrystalUnit0\CrystalUnit0.csproj">
+      <Project>{b712fa4d-bc74-4708-bbc6-22fb8d279537}</Project>
+      <Name>CrystalUnit0</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

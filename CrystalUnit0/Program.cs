@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 namespace CrystalUnit0
 {
     using CrystalHill;
+    using System.IO;
+    using System.Reflection;
+
     class Program
     {
         static readonly Stopwatch sw = new Stopwatch();
@@ -25,8 +28,16 @@ namespace CrystalUnit0
                 }
             }
 
+            //Assembly thisAssembly = Assembly.GetExecutingAssembly();
+            //Console.WriteLine("Name: " + thisAssembly.GetName().Name);
+            //Console.WriteLine("Location: " + thisAssembly.Location);
+            //string codebase = thisAssembly.CodeBase;
+            //UriBuilder uri = new UriBuilder(codebase);
+            //string path = Uri.UnescapeDataString(uri.Path);
+            //string dirctory = Path.GetDirectoryName(path);
+            //Console.WriteLine(dirctory);
 
-            //DownloaderTest();
+            DownloaderTest();
             Console.ReadLine();
         }
 

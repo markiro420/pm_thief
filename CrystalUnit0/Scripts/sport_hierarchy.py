@@ -3,6 +3,7 @@ import sys
 import delivery_manager
 from data_classes import League, Sport
 import json
+import utils
 
 
 def get_sport_hierarchy(soup: BeautifulSoup):
@@ -28,4 +29,5 @@ if __name__ == "__main__":
         html_text = delivery_manager.read_file(in_uuid)
         bs = delivery_manager.html_to_soup(html_text)
         sh = [MyEncoder().encode(sport) for sport in get_sport_hierarchy(bs)]
-        delivery_manager.write_file(json.dump(sh))
+        out_uuid = delivery_manager.write_file(json.dump(sh))
+        print(out_uuid)

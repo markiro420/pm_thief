@@ -1,19 +1,33 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 
 namespace CrystalGeneric
 {
-    public static class ScriptRunner
+    public class ScriptRunner
     {
-        private static readonly string base_path = @"..\..\Scripts\";
+        private ScriptRunner()
+        {
 
-        public static string RunScript(string sc)
+        }
+
+        public ScriptRunner(Assembly asm)
+        {
+            var asm_name = asm.GetName().Name; // CrystalUnit0 
+            var asm_location = asm.Location;
+            // C:\Users\beeff\Desktop\progs\CrystalFactory\CrystalUnit0\bin\Debug\CrystalUnit0.exe
+            base_path = $@"..\..\..\{asm_name}\Scripts\";
+        }
+
+        private readonly string base_path;
+
+        public string RunScript(string sc)
         {
             return RunScript(sc, string.Empty);
         }
 
-        public static string RunScript(string sc, string args)
+        public string RunScript(string sc, string args)
         {
             string path = Path.Combine(base_path, sc);
             ProcessStartInfo info = new ProcessStartInfo
