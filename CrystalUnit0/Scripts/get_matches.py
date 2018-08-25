@@ -8,7 +8,16 @@ import json
 
 def get_raw_matches(soup: BeautifulSoup):
     raw_table = soup.find(class_="dt twp", recursive=True)
-    row_matches = list(raw_table.find_all("tbody", class_=lambda c: c == "row1" or c == "row2"))
+
+    meta_names = []
+    for col in raw_table.find("tbody").tr.find_all("th"):
+        name = col.attrs.get("title")
+        if name is None:
+            meta_names.append(col.get_text())
+        else:
+            meta_names.append(col.attrs['title'])
+
+    row_matches = list(raw_table.find_all("tbody", class_=lambda c: (c == "row1" or c == "row2")))
 
     matches = []
 
@@ -19,7 +28,7 @@ def get_raw_matches(soup: BeautifulSoup):
             classes = []
         if "props" not in classes:
             matches.append(get_match_data(raw_match))
-    return matches
+    return meta_names, matches
 
 
 def get_match_data(raw_match: [Tag]):
@@ -40,3 +49,25 @@ if __name__ == "__main__":
         soup = html_to_soup(html_text)
         raw_matches = get_raw_matches(soup)
         write_file(json.dump(raw_matches))
+    else:
+        with open('test.csv', 'a', encoding='utf8') as file:
+            sh = get_sport_hierarchy(download_html_page_soup("https://www.parimatch.com/en/sport/futbol/liga-nacijj-uefa"))
+            for sport in sh:
+                i = 0
+                for league in sport.leagues:
+                    bs = download_html_page_soup(league.link)
+                    try:
+                        meta_names, _ = get_raw_matches(bs)
+                    except:
+                        meta_names = []
+                    try:
+                        file.write(sport.name + ','+league.name + ','+",".join(meta_names) + '\n')
+                        print(sport.name +' ' + str(i) + '/' + str(len(sport.leagues)))
+                    except:
+                        with open('errors.csv', 'a', encoding='utf8') as f:
+                            f.write(sport.name + ' ' + league.link)
+                            print('error')
+                    i += 1
+
+                print()
+

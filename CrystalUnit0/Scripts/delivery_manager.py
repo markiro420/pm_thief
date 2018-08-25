@@ -4,6 +4,7 @@ from urllib.request import *
 import uuid
 
 
+
 def html_to_soup(html: str):
     return BeautifulSoup(html, 'html5lib')
 

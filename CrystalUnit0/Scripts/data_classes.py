@@ -1,7 +1,10 @@
 class League:
-    def __init__(self, league_name, link):
-        self.league_name = league_name
-        self.link = "https://www.parimatch.com" + link
+    def __init__(self, name, link):
+        self.name = name
+        if link.find("https://www.parimatch.com") == -1:
+            self.link = "https://www.parimatch.com" + link
+        else:
+            self.link = link
 
 
 class Sport:
