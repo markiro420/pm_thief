@@ -6,7 +6,14 @@ from utils import MyEncoder
 import json
 
 
-def get_raw_matches(soup: BeautifulSoup):
+def get_matches(soup: BeautifulSoup, sport: str):
+    if sport.lower() == 'football':
+        return get_matches_football(soup)
+    else:
+        return []
+
+
+def get_matches_football(soup: BeautifulSoup):
     raw_table = soup.find(class_="dt twp", recursive=True)
 
     meta_names = []
@@ -27,47 +34,47 @@ def get_raw_matches(soup: BeautifulSoup):
         except KeyError:
             classes = []
         if "props" not in classes:
-            matches.append(get_match_data(raw_match))
-    return meta_names, matches
+            matches.append(get_match_data_football(raw_match))
+
+    nice_matches = []
+    for match in matches:
+        pseudo_class = {}
+        for i, col in enumerate(match):
+            field = meta_names[i].split()
+            field = ''.join([field[0].lower()] + [w.capitalize() for w in field[1:]])
+            if field == 'date':
+                pseudo_class['date'] = col[0] + ' ' + col[1]
+            elif field == 'event':
+                pseudo_class['teamFirst'] = col[0]
+                pseudo_class['teamSecond'] = col[1]
+            elif len(col) == 1:
+                pseudo_class[field] = col[0]
+            elif len(col) == 2:
+                pseudo_class[field+'First'] = col[0]
+                pseudo_class[field+'Second'] = col[1]
+        nice_matches.append(pseudo_class)
+    return nice_matches
 
 
-def get_match_data(raw_match: [Tag]):
+def get_match_data_football(raw_match: [Tag]):
     raw_match = raw_match.tr
 
     data_cols = list(raw_match.find_all("td"))
     match_data = []
-    for i, col in enumerate(data_cols):
-        match_data.append(col.get_text())
 
+    # if len(data_cols) != 17:
+    #     print('wtf?')
+    for i, col in enumerate(data_cols):
+        match_data.append(list(col.stripped_strings))
     return match_data
 
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         in_uuid = sys.argv[1]
+        sport = sys.argv[2]
         html_text = read_file(in_uuid)
         soup = html_to_soup(html_text)
-        raw_matches = get_raw_matches(soup)
-        write_file(json.dump(raw_matches))
-    else:
-        with open('test.csv', 'a', encoding='utf8') as file:
-            sh = get_sport_hierarchy(download_html_page_soup("https://www.parimatch.com/en/sport/futbol/liga-nacijj-uefa"))
-            for sport in sh:
-                i = 0
-                for league in sport.leagues:
-                    bs = download_html_page_soup(league.link)
-                    try:
-                        meta_names, _ = get_raw_matches(bs)
-                    except:
-                        meta_names = []
-                    try:
-                        file.write(sport.name + ','+league.name + ','+",".join(meta_names) + '\n')
-                        print(sport.name +' ' + str(i) + '/' + str(len(sport.leagues)))
-                    except:
-                        with open('errors.csv', 'a', encoding='utf8') as f:
-                            f.write(sport.name + ' ' + league.link)
-                            print('error')
-                    i += 1
-
-                print()
+        raw_matches = get_matches(soup, sport)
+        write_file(json.dumps(raw_matches))
 
